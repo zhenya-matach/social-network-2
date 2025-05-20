@@ -10,8 +10,14 @@
     color: gold;
 }
 
-.dialog{
+.dialog a{
+    color: #000000;
+    text-decoration: none;
+}
 
+.dialog a:active,
+.dialog a:focus {
+    color: gold;
 }
 
 .messages{
