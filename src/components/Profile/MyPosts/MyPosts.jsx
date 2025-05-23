@@ -22,6 +22,7 @@ const MyPosts = () => {
             srcAvatar: 'https://i.pinimg.com/736x/6c/5f/a6/6c5fa66441d2d4f478542b14469a9931.jpg'
         },
     ]
+    let postsElement = postsData.map( p => <Post message={p.message} likeCount={p.likesCount} src={p.srcAvatar} /> )
     return (
         <div className={style.postsBlock}>
             <h3>My posts</h3>
@@ -34,9 +35,7 @@ const MyPosts = () => {
                 </div>
             </div>
             <div className={style.posts}>
-                <Post message={postsData[0].message} likeCount={postsData[0].likesCount} src={postsData[0].srcAvatar}/>
-                <Post message={postsData[1].message} likeCount={postsData[1].likesCount} src={postsData[1].srcAvatar}/>
-                <Post message={postsData[2].message} likeCount={postsData[2].likesCount} src={postsData[2].srcAvatar}/>
+                {postsElement}
             </div>
         </div>
     );
