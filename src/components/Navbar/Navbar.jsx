@@ -1,23 +1,12 @@
 import style from './Navbar.module.css';
-import {NavLink} from 'react-router-dom';
+import NavigationBlock from './NavigationBlock/NavigationBlock';
+import FriendsBlock from './FriendsBlock/FriendsBlock';
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <nav className={style.nav}>
-            <div className={style.item}>
-                <NavLink to="/Profile">Profile</NavLink>
-            </div>
-            <div className={style.item}>
-                <NavLink to="/Dialogs">Dialogs</NavLink>
-            </div>
-            <div className={style.item}>
-                <NavLink to="/News">News</NavLink></div>
-            <div className={style.item}>
-                <NavLink to="/Music">Music</NavLink>
-            </div>
-            <div className={style.item}>
-                <NavLink to="/Settings">Settings</NavLink>
-            </div>
+            <NavigationBlock/>
+            <FriendsBlock {...props}/>
         </nav>
     );
 }

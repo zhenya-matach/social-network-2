@@ -2,6 +2,12 @@
     grid-area: n;
     background-color: antiquewhite;
     padding: 20px;
+    /*font-family: "Agency FB";*/
+    display: grid;
+    grid-template-areas:
+    "n"
+    "f";
+    grid-template-rows: 4fr 7fr;
 }
 
 .item a {
@@ -12,4 +18,34 @@
 .item a:active,
 .item a:focus {
     color: gold;
+}
+
+.navigationBlock {
+    grid-area: n;
+    font-size: 30px;
+}
+
+.friendsBlock {
+    font-size: 18px;
+    grid-area: f;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat( 3, 80px );
+}
+
+.friendsBlock img{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.friendsItem {
+text-align: center;
+}
+
+.friendsBlock a {
+    color: white;
+    text-decoration: none;
 }
