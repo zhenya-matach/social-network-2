@@ -5,3 +5,16 @@
 .posts{
     padding-top: 20px;
 }
+
+.button {
+    border-color: white;
+    height: 40px;
+    border-radius: 8px;
+    color: black;
+    transition: .2s linear;
+    background: antiquewhite;
+}
+
+.button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px darkgrey;
+}

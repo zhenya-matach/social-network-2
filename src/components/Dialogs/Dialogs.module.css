@@ -1,9 +1,14 @@
 .dialogs{
+    padding: 30px;
     display: grid;
+    grid-template-areas:
+    "d m"
+    "t t";
     grid-template-columns: 2fr 10fr;
 }
 
 .dialogsItems{
+    grid-area: d;
     padding: 10px;
 }
 .dialogsItems .active {
@@ -21,9 +26,26 @@
 }
 
 .messages{
-    padding: 10px;
+    text-align: right;
+    grid-area: m;
+    padding: 30px;
 }
 
-.message{
+.inputBlock {
+    text-align: right;
+    grid-area: t;
+    padding: 30px;
+}
 
+.button {
+    border-color: white;
+    height: 40px;
+    border-radius: 8px;
+    color: black;
+    transition: .2s linear;
+    background: antiquewhite;
+}
+
+.button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px darkgrey;
 }
