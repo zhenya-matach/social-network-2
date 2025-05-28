@@ -5,13 +5,12 @@ import React from 'react';
 const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
-
     let addPost = () => {
-        let text = newPostElement.current.value;
-        console.log(text);
+        props.addPost(newPostElement.current.value);
     }
 
     let postsElement = props.state.postsData.map( p => <Post message={p.message} likeCount={p.likesCount} src={p.srcAvatar} /> )
+
     return (
         <div className={style.postsBlock}>
             <h3>My posts</h3>

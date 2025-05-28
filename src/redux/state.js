@@ -50,4 +50,15 @@ let state = {
     }
 }
 
+export let addPost = (postMessage) => {
+    let newPost = {
+        id: 4,
+        message: postMessage,
+        likesCount: 0,
+        srcAvatar: 'https://static.thenounproject.com/png/2643408-200.png'
+    };
+
+    state.profilePage.postsData.push(newPost);
+}
+
 export default state;
