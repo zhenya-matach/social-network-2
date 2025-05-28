@@ -23,6 +23,7 @@ let state = {
                 srcAvatar: 'https://i.pinimg.com/736x/6c/5f/a6/6c5fa66441d2d4f478542b14469a9931.jpg'
             },
         ],
+        newPostText: ''
     },
     dialogsPage: {
         dialogsData: [
@@ -53,15 +54,21 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let newPost = {
         id: 4,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0,
         srcAvatar: 'https://static.thenounproject.com/png/2643408-200.png'
     };
 
     state.profilePage.postsData.push(newPost);
+    state.profilePage.newPostText = '';
+    renderEntireTree({state});
+}
+
+export let updatePostText = (newText) => {
+    state.profilePage.newPostText = newText;
     renderEntireTree({state});
 }
 
