@@ -1,11 +1,11 @@
 .app-wrapper {
     display: grid;
-    width: 1000px;
+    width: 950px;
     margin: 0 auto;
     grid-template-areas:
     "h h"
     "n c";
-    grid-template-rows: 1fr 10fr;
+    grid-template-rows: 90px 10fr;
     grid-template-columns: 2fr 10fr;
 }
 
