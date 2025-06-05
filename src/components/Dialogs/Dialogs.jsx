@@ -7,13 +7,13 @@ import React from 'react';
 const Dialogs = (props) => {
 
     let newMessageElement = React.createRef();
-    let newMassage = () => {
-        let text =newMessageElement.current.value;
-        console.log(text);
+    let onMessageChange = () => {
+        let text = newMessageElement.current.value;
+        props.updateMessageText(text);
     }
 
-    let dialogsElements = props.state.dialogsData.map(d => <DialogItem name={d.name} id={d.id}/>);
-    let messageElements = props.state.messagesData.map(m => <Message message={m.message}/>);
+    let dialogsElements = props.state.dialogsData.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
+    let messageElements = props.state.messagesData.map(m => <Message key={m.id} message={m.message}/>);
 
     return (
         <div className={style.dialogs}>
@@ -24,8 +24,8 @@ const Dialogs = (props) => {
                 {messageElements}
             </div>
             <div className={style.inputBlock}>
-                <textarea ref={newMessageElement} placeholder='Enter your message' cols="30" rows="3"></textarea>
-                <div><button onClick={newMassage} className={style.button}>Add message</button></div>
+                <textarea id={'messageInput'} onChange={onMessageChange} ref={newMessageElement} value={props.state.newDialogMessage} placeholder='Enter your message' cols="30" rows="3"></textarea>
+                <div><button onClick={props.addMessage} className={style.button}>Add message</button></div>
             </div>
         </div>
     );

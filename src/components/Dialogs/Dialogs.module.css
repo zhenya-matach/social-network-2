@@ -1,6 +1,7 @@
 .dialogs{
     padding: 30px;
     display: grid;
+    width: 740px;
     grid-template-areas:
     "d m"
     "t t";

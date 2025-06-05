@@ -1,5 +1,6 @@
-import {renderEntireTree} from '../render';
-
+let renderEntireTree = () => {
+    console.log('State changed');
+}
 
 let state = {
     profilePage: {
@@ -40,7 +41,8 @@ let state = {
             {id: 3, message: 'Yo, bro!'},
             {id: 4, message: 'Yo, bro!'},
             {id: 5, message: 'Yo, bro!'}
-        ]
+        ],
+        newDialogMessage: ''
     },
     sideBar: {
         friendsData:[
@@ -54,9 +56,11 @@ let state = {
     }
 }
 
-export let addPost = () => {
+window.state = state;
+
+export const addPost = () => {
     let newPost = {
-        id: 4,
+        id: state.profilePage.postsData.length + 1,
         message: state.profilePage.newPostText,
         likesCount: 0,
         srcAvatar: 'https://static.thenounproject.com/png/2643408-200.png'
@@ -67,9 +71,30 @@ export let addPost = () => {
     renderEntireTree({state});
 }
 
-export let updatePostText = (newText) => {
+export const updatePostText = (newText) => {
     state.profilePage.newPostText = newText;
     renderEntireTree({state});
+}
+
+export const addMessage = () => {
+    let newMessage ={
+        id: state.dialogsPage.messagesData.length + 1,
+        message: state.dialogsPage.newDialogMessage
+    };
+
+    state.dialogsPage.messagesData.push(newMessage);
+    state.dialogsPage.newDialogMessage = '';
+    console.log(state.dialogsPage.newDialogMessage);
+    renderEntireTree({state});
+}
+
+export const updateMessageText = (newText) => {
+    state.dialogsPage.newDialogMessage = newText;
+    renderEntireTree({state});
+}
+
+export const subscribe = (observer) => {
+    renderEntireTree = observer;
 }
 
 export default state;
