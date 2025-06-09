@@ -52,45 +52,43 @@ let store = {
             ]
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         console.log('State changed');
     },
-    addPost() {
-        let newPost = {
-            id: this._state.profilePage.postsData.length + 1,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0,
-            srcAvatar: 'https://static.thenounproject.com/png/2643408-200.png'
-        };
 
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    updatePostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-    addMessage() {
-        let newMessage ={
-            id: this._state.dialogsPage.messagesData.length + 1,
-            message: this._state.dialogsPage.newDialogMessage
-        };
-
-        this._state.dialogsPage.messagesData.push(newMessage);
-        this._state.dialogsPage.newDialogMessage = '';
-        console.log(this._state.dialogsPage.newDialogMessage);
-        this._callSubscriber(this._state);
-    },
-    updateMessageText(newText) {
-        this._state.dialogsPage.newDialogMessage = newText;
-        this._callSubscriber(this._state);
+    getState() {
+        return this._state;
     },
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: this._state.profilePage.postsData.length + 1,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0,
+                srcAvatar: 'https://static.thenounproject.com/png/2643408-200.png'
+            };
+            this._state.profilePage.postsData.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MESSAGE') {
+            let newMessage = {
+                id: this._state.dialogsPage.messagesData.length + 1,
+                message: this._state.dialogsPage.newDialogMessage
+            };
+            this._state.dialogsPage.messagesData.push(newMessage);
+            this._state.dialogsPage.newDialogMessage = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+            this._state.dialogsPage.newDialogMessage = action.newText;
+            this._callSubscriber(this._state);
+        }
     }
 }
 
