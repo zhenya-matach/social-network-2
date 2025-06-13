@@ -2,8 +2,7 @@ import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import React from 'react';
-import {addMessageActionCreator, updateMessageTextActionCreator} from '../../redux/store';
-
+import {addMessageActionCreator, updateMessageTextActionCreator} from '../../redux/dialogsReducer';
 
 const Dialogs = (props) => {
 
@@ -28,7 +27,8 @@ const Dialogs = (props) => {
             </div>
             <div className={style.inputBlock}>
                 <div>
-                    <textarea id={'messageInput'} onChange={onMessageChange} value={props.state.newDialogMessage} placeholder="Enter your message" cols="30"
+                    <textarea id={'messageInput'} onChange={onMessageChange} value={props.state.newDialogMessage}
+                              placeholder="Enter your message" cols="30"
                               rows="3">
                     </textarea>
                 </div>

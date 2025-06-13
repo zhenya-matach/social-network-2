@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_MASSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
+import dialogsReducer from './dialogsReducer';
+import sideBarReducer from './sideBarReducer';
+import profileReducer from './profileReducer';
 
 let store = {
     _state: {
@@ -93,45 +92,12 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            if (this._state.profilePage.newPostText.trim().length > 0) {
-                let newPost = {
-                    id: this._state.profilePage.postsData.length + 1,
-                    message: this._state.profilePage.newPostText.trim(),
-                    likesCount: 0,
-                    srcAvatar: 'https://static.thenounproject.com/png/2643408-200.png'
-                };
-                this._state.profilePage.postsData.push(newPost);
-                this._state.profilePage.newPostText = '';
-                this._callSubscriber(this._state);
-            }
-        } else if (action.type === 'UPDATE-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === 'ADD-MESSAGE') {
-            if (this._state.dialogsPage.newDialogMessage.trim().length > 0) {
-                let newMessage = {
-                    id: this._state.dialogsPage.messagesData.length + 1,
-                    message: this._state.dialogsPage.newDialogMessage.trim()
-                };
-                this._state.dialogsPage.messagesData.push(newMessage);
-                this._state.dialogsPage.newDialogMessage = '';
-                this._callSubscriber(this._state);
-            }
-        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-            this._state.dialogsPage.newDialogMessage = action.newText;
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sideBar = sideBarReducer(this._state.sideBar, action);
+        this._callSubscriber(this._state);
     }
 }
-
-export const addPostActionCreator = () => ({type: ADD_POST});
-
-export const updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, newText: text});
-
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
-
-export const updateMessageTextActionCreator = (text) => ({type: UPDATE_MASSAGE_TEXT, newText: text});
 
 window.store = store;
 

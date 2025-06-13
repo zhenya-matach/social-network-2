@@ -1,7 +1,7 @@
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from 'react';
-import {addPostActionCreator, updatePostTextActionCreator} from '../../../redux/store';
+import {addPostActionCreator, updatePostTextActionCreator} from '../../../redux/profileReducer';
 
 const MyPosts = (props) => {
 
@@ -15,7 +15,6 @@ const MyPosts = (props) => {
 
     let postsElement = props.state.postsData.map(p => <Post key={p.id} message={p.message} likeCount={p.likesCount}
                                                             src={p.srcAvatar}/>)
-
     return (
         <div className={style.postsBlock}>
             <h3>My posts</h3>
