@@ -2,20 +2,19 @@ import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import React from 'react';
-import {addMessageActionCreator, updateMessageTextActionCreator} from '../../redux/dialogsReducer';
 
 const Dialogs = (props) => {
 
     let addMessage = () => {
-        props.dispatch(addMessageActionCreator());
+        props.addMessage();
     }
     let onMessageChange = (e) => {
         let text = e.currentTarget.value
-        props.dispatch(updateMessageTextActionCreator(text));
+        props.onMessageChange(text);
     }
 
-    let dialogsElements = props.state.dialogsData.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
-    let messageElements = props.state.messagesData.map(m => <Message key={m.id} message={m.message}/>);
+    let dialogsElements = props.dialogsData.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
+    let messageElements = props.messagesData.map(m => <Message key={m.id} message={m.message}/>);
 
     return (
         <div className={style.dialogs}>
@@ -27,7 +26,7 @@ const Dialogs = (props) => {
             </div>
             <div className={style.inputBlock}>
                 <div>
-                    <textarea id={'messageInput'} onChange={onMessageChange} value={props.state.newDialogMessage}
+                    <textarea id={'messageInput'} onChange={onMessageChange} value={props.newDialogMessage}
                               placeholder="Enter your message" cols="30"
                               rows="3">
                     </textarea>
