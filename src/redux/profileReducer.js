@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 
-let initiallState = {
+let initialState = {
     postsData: [
         {
             id: 1,
@@ -25,9 +25,9 @@ let initiallState = {
     newPostText: ''
 };
 
-const profileReducer = (state = initiallState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             if (state.newPostText.trim().length > 0) {
                 let newPost = {
                     id: state.postsData.length + 1,
@@ -35,13 +35,17 @@ const profileReducer = (state = initiallState, action) => {
                     likesCount: 0,
                     srcAvatar: 'https://static.thenounproject.com/png/2643408-200.png'
                 };
-                state.postsData.push(newPost);
-                state.newPostText = '';
+                let stateCopy = structuredClone(state);
+                stateCopy.postsData.push(newPost);
+                stateCopy.newPostText = '';
+                return stateCopy;
             }
-            return state;
-        case UPDATE_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+        }
+        case UPDATE_POST_TEXT: {
+            let stateCopy = structuredClone(state);
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
         default:
             return state;
     }
