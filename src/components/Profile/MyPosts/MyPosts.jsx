@@ -14,13 +14,14 @@ const MyPosts = (props) => {
     }
 
     let postsElement = props.postsData.map(p => <Post key={p.id} message={p.message} likeCount={p.likesCount}
-                                                            src={p.srcAvatar}/>)
+                                                      src={p.srcAvatar}/>)
     return (
         <div className={style.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea id={'postInput'} onChange={onPostChange} value={props.newPostText} placeholder="Enter your message"></textarea>
+                    <textarea id={'postInput'} onChange={onPostChange} value={props.newPostText}
+                              placeholder="Enter your message"></textarea>
                 </div>
                 <div>
                     <button className={style.button} onClick={addPost}>Add Post</button>

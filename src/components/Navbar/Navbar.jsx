@@ -1,12 +1,12 @@
 import style from './Navbar.module.css';
 import NavigationBlock from './NavigationBlock/NavigationBlock';
-import FriendsBlock from './FriendsBlock/FriendsBlock';
+import FriendsBlockContainer from './FriendsBlock/FriendsBlockContainer';
 
-const Navbar = (props) => {
+const Navbar = () => {
     return (
         <nav className={style.nav}>
             <NavigationBlock/>
-            <FriendsBlock {...props}/>
+            <FriendsBlockContainer/>
         </nav>
     );
 }
