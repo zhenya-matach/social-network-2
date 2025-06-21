@@ -35,16 +35,18 @@ const profileReducer = (state = initialState, action) => {
                     likesCount: 0,
                     srcAvatar: 'https://static.thenounproject.com/png/2643408-200.png'
                 };
-                let stateCopy = structuredClone(state);
-                stateCopy.postsData.push(newPost);
-                stateCopy.newPostText = '';
-                return stateCopy;
+                return {
+                    ...state,
+                    postsData: [...state.postsData, newPost],
+                    newPostText: ''
+                }
             }
         }
         case UPDATE_POST_TEXT: {
-            let stateCopy = structuredClone(state);
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         }
         default:
             return state;
