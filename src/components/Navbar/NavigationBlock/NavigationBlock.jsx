@@ -11,6 +11,9 @@ const NavigationBlock = () => {
                 <NavLink to="/Dialogs">Dialogs</NavLink>
             </div>
             <div className={style.item}>
+                <NavLink to="/Users">Users</NavLink>
+            </div>
+            <div className={style.item}>
                 <NavLink to="/News">News</NavLink></div>
             <div className={style.item}>
                 <NavLink to="/Music">Music</NavLink>
