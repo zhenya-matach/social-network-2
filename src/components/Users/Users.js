@@ -1,16 +1,19 @@
 import React from 'react';
 import style from './Users.module.css';
 import axios from 'axios';
-import userPhoto from './../../assets/image/user2.png'
+import userPhoto from '../../assets/image/user.png'
 
 let Users = (props) => {
-    if (props.usersData.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            props.setUsers(response.data.items);
-        });
+    let getUsers = () => {
+        if (props.usersData.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items);
+            });
+        }
     }
 
     return <div className={style.usersBlock}>
+        <button onClick={getUsers}>Get Users</button>
         {
             props.usersData.map(u => <div key={u.id}>
                 <span>
