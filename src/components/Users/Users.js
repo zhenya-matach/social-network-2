@@ -1,21 +1,23 @@
-import React from 'react';
 import style from './Users.module.css';
+import userPhoto from '../../assets/image/user.png';
+import React from 'react';
 import axios from 'axios';
-import userPhoto from '../../assets/image/user.png'
 
-let Users = (props) => {
-    let getUsers = () => {
-        if (props.usersData.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                props.setUsers(response.data.items);
+
+class Users extends React.Component {
+
+    constructor(props) {
+        super(props);
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                this.props.setUsers(response.data.items);
             });
-        }
     }
 
-    return <div className={style.usersBlock}>
-        <button onClick={getUsers}>Get Users</button>
-        {
-            props.usersData.map(u => <div key={u.id}>
+    render() {
+        return <div className={style.usersBlock}>
+            {
+                this.props.usersData.map(u => <div key={u.id}>
                 <span>
                 <div>
                     <img className={style.photo} src={u.photos.small != null ? u.photos.small : userPhoto}
@@ -24,14 +26,14 @@ let Users = (props) => {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-                                props.unfollow(u.id)
+                                this.props.unfollow(u.id)
                             }}>Unfollow</button>
                             : <button onClick={() => {
-                                props.follow(u.id)
+                                this.props.follow(u.id)
                             }}>Follow</button>}
                     </div>
                 </span>
-                <span>
+                    <span>
                     <span>
                         <div>{u.name}</div><div>{u.status}</div>
                     </span>
@@ -40,9 +42,10 @@ let Users = (props) => {
                         <div>{'u.location.city'}</div>
                     </span>
             </span>
-            </div>)
-        }
-    </div>
-};
+                </div>)
+            }
+        </div>
+    }
+}
 
 export default Users;
