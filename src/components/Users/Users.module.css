@@ -7,3 +7,7 @@
     height: 100px;
     background-color: cornsilk;
 }
+
+.selectedPage{
+    font-weight: bold;
+}
