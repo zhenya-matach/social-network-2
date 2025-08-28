@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
 
 let initialState = {
     postsData: [
@@ -22,7 +23,8 @@ let initialState = {
             srcAvatar: 'https://i.pinimg.com/736x/6c/5f/a6/6c5fa66441d2d4f478542b14469a9931.jpg'
         },
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -43,11 +45,13 @@ const profileReducer = (state = initialState, action) => {
             }
         }
         case UPDATE_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
-            }
+            return {...state, newPostText: action.newText}
         }
+
+        case SET_USER_PROFILE: {
+            return {...state, profile: action.profile}
+        }
+
         default:
             return state;
     }
@@ -56,5 +60,7 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = () => ({type: ADD_POST});
 
 export const updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, newText: text});
+
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export default profileReducer;
