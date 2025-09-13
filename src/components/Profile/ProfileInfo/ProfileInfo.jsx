@@ -15,7 +15,9 @@ const ProfileInfo = (props) => {
             </div>
             <div className={style.descriptionBlock}>
                 <img src={props.profile.photos.large} alt="avatar"/>
-                ava+description
+                <div>{props.profile.aboutMe}</div>
+                <div>{props.profile.contacts.vk}</div>
+                <div>{props.profile.lookingForAJob ? "Ищу работу" : "Работаю"}</div>
             </div>
         </div>
     );
